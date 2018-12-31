@@ -186,7 +186,8 @@ func TestTrueSkill_4PFreeForAll_WithDraws(t *testing.T) {
 
 	ts := New(drawProbability)
 
-	players := []Player{ts.NewPlayer(),
+	players := []Player{
+		ts.NewPlayer(),
 		ts.NewPlayer(),
 		ts.NewPlayer(),
 		ts.NewPlayer()}

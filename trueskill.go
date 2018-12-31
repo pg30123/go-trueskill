@@ -115,6 +115,13 @@ func New(opts ...Option) Config {
 // For a N-player game, the draws parameter should have length n-1, where draws[i]
 // represents whether player[i] and player[i+1] are in draw.
 func (ts Config) AdjustSkillsWithDraws(players []Player, draws []bool) (newSkills []Player, probability float64) {
+	// panic if draws slice length is not as expected
+	if len(draws) != len(players)-1 {
+		panic(fmt.Sprintf(
+			"draws slice should have length %d but have %d instead",
+			len(players)-1, len(draws)))
+	}
+
 	// TODO: Rewrite the distribution bag and simplify the factor list as well
 	prior := gaussian.NewFromPrecision(0, 0)
 	varBag := collection.NewDistributionBag(prior)
